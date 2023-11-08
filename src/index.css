@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Node {
+  margin-left: 20px;  
+}
+
+.Btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.Logo {
+  width: 20px;
+}
