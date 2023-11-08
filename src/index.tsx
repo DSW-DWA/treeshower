@@ -6,12 +6,13 @@ import DeleteLogo from './delete.svg';
 import EditLogo from './edit.svg';
 import OkLogo from './ok.svg';
 import AddLogo from './add.svg';
+import ResetLogo from './reset.svg';
 import data from './data.json';
 import { useState } from 'react';
 import { TreeNode } from './tree';
 import buildTree from "./tree";
 
-const root = buildTree(data);
+let root = buildTree(data);
 
 interface ShowNodeProps {
   root: TreeNode;
@@ -38,6 +39,11 @@ function ShowNode(props: ShowNodeProps) {
      render()
   }
 
+  const handleResetClick = () => {
+    root = buildTree(data);
+    render()
+  }
+
   return(
     <div className='Node'>
       {isEditing ? 
@@ -49,9 +55,12 @@ function ShowNode(props: ShowNodeProps) {
         </div>:
         <div className='Name'>
           {name}
-          { props.root.parent &&
+          { props.root.parent ?
             <button className='Btn' onClick={handleDeleteClick}>
               <img src={DeleteLogo} className='Logo' alt='Удалить элемент'/>
+            </button>:
+            <button className='Btn' onClick={handleResetClick}>
+              <img src={ResetLogo} className='Logo' alt='Вернуть в изначальное состояние'/>
             </button>
           }
           <button className='Btn' onClick={() => setIsEditing(!isEditing)}>
